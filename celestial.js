@@ -15,7 +15,9 @@
       zoomlevel = 1;         // Default zoom level, 1 = 100%
   
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  
+  Celestial.getsvg = function() {
+    exportSVG('export');
+  }
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
     var animationID,
@@ -2759,7 +2761,6 @@
     });
   
     col.append("input").attr("type", "button").attr("id", "download-svg").attr("value", "SVG File").on("click", function() {
-      exportSVG(getFilename(".svg")); 
       return false;
     });
   
@@ -5392,7 +5393,6 @@
   Celestial.exportSVG = function(callback) {
     if (!callback) return;
     exportCallback = callback;
-    exportSVG();
   };
   var datetimepicker = function(cfg, callback) {
     var date = new Date(), 
