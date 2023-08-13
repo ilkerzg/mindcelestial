@@ -6513,18 +6513,14 @@
         // Convert the SVG to a Data URL instead of blob download
         var serializedSVG = new XMLSerializer().serializeToString(svg.node());
         var svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(serializedSVG)));
-        // Send this SVG Data URL to Fabric.js
-        // change child element this svg to #svgs with vanilla js
-
-        // check svgs element. if has child, remove it
-        
+      
 
     } else if (exportCallback !== null) {
 
 
         exportCallback(svg.node().outerHTML);
     }
-    
+    d3.select("#d3-celestial-svg").remove();
     });
   
   }
