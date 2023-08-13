@@ -5290,25 +5290,17 @@
        .attr(":inkscape:window-width", m.width+200)
        .attr(":inkscape:window-height", m.height)
        .attr(":inkscape:window-maximized", "1");*/
-       var svg = d3.select("#d3-celestial-map");
+       var svg = d3.select("#d3-celestial-svg svg");
 
-       if (!svg || !svg.node()) {
-         console.error("SVG not found.");
-         return;
-       }
-     
-       const svgContent = svg.node().outerHTML;
-     
-       if (fname) {
-         // If you want to store the SVG content in React's state, you'll need 
-         // a state setter function. For now, I'm just logging the content.
-         console.log(svgContent);
-       } else if (exportCallback !== null) {
-         exportCallback(svgContent);
-         console.log(svgContent);
+    const svgContent = svg.node().outerHTML;
 
-       }
-       console.log(svgContent);
+    if (fname) {
+      // Log as Base64 string
+      const base64 = btoa(svgContent);
+      console.log(base64); 
+    } else if (exportCallback !== null) {
+      exportCallback(svgContent);
+    }
 
       d3.select("#d3-celestial-svg").remove();
     });
