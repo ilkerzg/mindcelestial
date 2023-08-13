@@ -5305,8 +5305,11 @@
          console.log(svgContent);
        } else if (exportCallback !== null) {
          exportCallback(svgContent);
+         console.log(svgContent);
+
        }
-     
+       console.log(svgContent);
+
       d3.select("#d3-celestial-svg").remove();
     });
   
