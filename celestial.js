@@ -5944,7 +5944,7 @@
           t = q._tasks[i],
           j = t.length - 1,
           c = t[j];
-      t[j] = end(q, i);
+      t[j] = end(q, i); 
       --q._waiting, ++q._active;
       t = c.apply(null, t);
       if (!q._tasks[i]) continue; // task finished synchronously
