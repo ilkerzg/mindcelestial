@@ -1,3 +1,4 @@
+
 // Copyright 2015-2020 Olaf Frohn https://github.com/ofrohn, see LICENSE
 !(function() {
   var Celestial = {
@@ -13,7 +14,7 @@
       ANIMINTERVAL_Z = 1500, // Zoom duration scale in ms
       zoomextent = 10,       // Default maximum extent of zoom (max/min)
       zoomlevel = 1;         // Default zoom level, 1 = 100%
-  
+
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
   Celestial.getsvg = function() {
     exportSVG('export');
@@ -4607,8 +4608,7 @@
   
     var q = d3.queue(2);
     
-    groups.background.append("path").datum(circle).attr("class", "background").attr("d", map); 
-    styles.background.fill = cfg.background.fill;
+
   
     if (cfg.lines.graticule.show) {
       if (cfg.transform === "equatorial") {
@@ -5290,14 +5290,21 @@
        .attr(":inkscape:window-width", m.width+200)
        .attr(":inkscape:window-height", m.height)
        .attr(":inkscape:window-maximized", "1");*/
-       var svg = d3.select("#d3-celestial-svg svg");
 
     const svgContent = svg.node().outerHTML;
 
     if (fname) {
       // Log as Base64 string
       const base64 = btoa(svgContent);
-      console.log(base64); 
+  
+      // Construct data URI 
+      const dataURI = 'data:image/svg+xml;base64,' + base64;
+
+      const event = new CustomEvent('newSVG', {detail: svgContent});
+      window.dispatchEvent(event);
+
+ 
+
     } else if (exportCallback !== null) {
       exportCallback(svgContent);
     }
