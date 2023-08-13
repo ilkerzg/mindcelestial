@@ -1231,7 +1231,9 @@
       zoomlevel = 1;         // Default zoom level, 1 = 100%
   
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  
+  Celestial.getsvg = function(){
+      exportSVG('mind_svg');
+  }
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
     var animationID,
@@ -1488,8 +1490,8 @@
           else setTimeout(d.callback, 0);
         }, this);
       }
-      exportSVG('ssg');
 
+      
       if (cfg.lang && cfg.lang != "") apply(Celestial.setLanguage(cfg.lang));
       //redraw();
 
@@ -1895,8 +1897,8 @@
       }
       
       //Celestial.updateForm();
-      exportSVG('ssg');
 
+      
     }
       
   
@@ -3977,7 +3979,7 @@
     });
   
     col.append("input").attr("type", "button").attr("id", "download-svg").attr("value", "SVG File").on("click", function() {
-      exportSVG('svg'); 
+
       return false;
     });
   
@@ -6515,12 +6517,7 @@
         // change child element this svg to #svgs with vanilla js
 
         // check svgs element. if has child, remove it
-        if (document.getElementById('svgs').hasChildNodes()) {
-          document.getElementById('svgs').removeChild(document.getElementById('svgs').firstChild);
-        }
-
-       document.getElementById('svgs').appendChild(svg.node());
-       addSvgToCanvas(svgDataUrl);
+        
 
     } else if (exportCallback !== null) {
 
@@ -6613,7 +6610,7 @@
   Celestial.exportSVG = function(callback) {
     if (!callback) return;
     exportCallback = callback;
-    exportSVG('ssg');
+
   };
   var datetimepicker = function(cfg, callback) {
     var date = new Date(), 
