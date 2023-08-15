@@ -1,4 +1,3 @@
-
 // Copyright 2015-2020 Olaf Frohn https://github.com/ofrohn, see LICENSE
 !(function() {
   var Celestial = {
@@ -14,11 +13,9 @@
       ANIMINTERVAL_Z = 1500, // Zoom duration scale in ms
       zoomextent = 10,       // Default maximum extent of zoom (max/min)
       zoomlevel = 1;         // Default zoom level, 1 = 100%
-
+  
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  Celestial.getsvg = function() {
-    exportSVG('export');
-  }
+  
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
     var animationID,
@@ -2762,6 +2759,7 @@
     });
   
     col.append("input").attr("type", "button").attr("id", "download-svg").attr("value", "SVG File").on("click", function() {
+      exportSVG(getFilename(".svg")); 
       return false;
     });
   
@@ -4608,7 +4606,8 @@
   
     var q = d3.queue(2);
     
-
+    groups.background.append("path").datum(circle).attr("class", "background").attr("d", map); 
+    styles.background.fill = cfg.background.fill;
   
     if (cfg.lines.graticule.show) {
       if (cfg.transform === "equatorial") {
@@ -5290,25 +5289,18 @@
        .attr(":inkscape:window-width", m.width+200)
        .attr(":inkscape:window-height", m.height)
        .attr(":inkscape:window-maximized", "1");*/
-
-    const svgContent = svg.node().outerHTML;
-
-    if (fname) {
-      // Log as Base64 string
-      const base64 = btoa(svgContent);
-  
-      // Construct data URI 
-      const dataURI = 'data:image/svg+xml;base64,' + base64;
-
-      const event = new CustomEvent('newSVG', {detail: svgContent});
-      window.dispatchEvent(event);
-
- 
-
-    } else if (exportCallback !== null) {
-      exportCallback(svgContent);
-    }
-
+      if (fname) {
+        var blob = new Blob([svg.node().outerHTML], {type:"image/svg+xml;charset=utf-8"});
+      
+        var a = d3.select("body").append("a").node(); 
+        a.download = fname || "d3-celestial.svg";
+        a.rel = "noopener";
+        a.href = URL.createObjectURL(blob);
+        a.click();
+        d3.select(a).remove();
+      } else if (exportCallback !== null) {
+        exportCallback(svg.node().outerHTML);
+      }
       d3.select("#d3-celestial-svg").remove();
     });
   
@@ -5395,6 +5387,7 @@
   Celestial.exportSVG = function(callback) {
     if (!callback) return;
     exportCallback = callback;
+    exportSVG();
   };
   var datetimepicker = function(cfg, callback) {
     var date = new Date(), 
@@ -5944,7 +5937,7 @@
           t = q._tasks[i],
           j = t.length - 1,
           c = t[j];
-      t[j] = end(q, i); 
+      t[j] = end(q, i);
       --q._waiting, ++q._active;
       t = c.apply(null, t);
       if (!q._tasks[i]) continue; // task finished synchronously
