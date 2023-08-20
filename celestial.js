@@ -5308,11 +5308,10 @@
       console.log(svgContent);
 
       // convert svgContent to base 64 image
-      var base64 = 'data:image/svg+xml;base64,' + btoa(svgContent);
-      console.log(base64);
+    // convert svgContent to base 64 image
+var base64 = 'data:image/svg+xml;base64,' + btoa(encodeURIComponent(svgContent));
+console.log(base64);
 
-
- 
 
     } else if (exportCallback !== null) {
       exportCallback(svgContent);
