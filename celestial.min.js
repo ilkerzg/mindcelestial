@@ -17,7 +17,7 @@
 
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
   Celestial.getsvg = function() {
-    exportSVG('export');
+   return exportSVG('export');
   }
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
