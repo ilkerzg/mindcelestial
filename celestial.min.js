@@ -16,9 +16,10 @@
       zoomlevel = 1;         // Default zoom level, 1 = 100%
 
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  Celestial.getsvg = function() {
-   return exportSVG('export');
-  }
+  Celestial.getsvg = function(fname) {
+    return exportSVG(fname);
+ }
+ 
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
     var animationID,
