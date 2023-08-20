@@ -16,10 +16,9 @@
       zoomlevel = 1;         // Default zoom level, 1 = 100%
 
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  Celestial.getsvg = function(fname) {
-    return exportSVG(fname);
- }
- 
+  Celestial.getsvg = function(fname, callback) {
+    return exportSVG(fname, callback);
+  }
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
     var animationID,
@@ -4564,7 +4563,7 @@
     }
   
   };
-  function exportSVG(fname) {
+  function exportSVG(fname, callback) {
     // Remove the 'd3-celestial-svg' div if it already exists
 
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
@@ -5307,7 +5306,7 @@
 
 
 
-return svgContent;
+      callback(svgContent);
 
 
     } else if (exportCallback !== null) {
