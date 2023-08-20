@@ -4572,7 +4572,7 @@ var Moon = {
     return dat;
   }
 
-};function exportSVG(fname, valid = 'no') {
+};function exportSVG(fname, valid ) {
   if (valid !== 'yes') return;  // Added validation check
 
   var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
@@ -5282,29 +5282,45 @@ var Moon = {
     }
     return res + "} ";
   }
-  q.await(function(error) {
-    if (error) throw error;
-    var svgStr = d3.select("#d3-celestial-svg svg")
-      .attr("title", "D3-Celestial")
-      .attr("version", 1.1)
-      .attr("encoding", "UTF-8")
-      .attr("xmlns", "http://www.w3.org/2000/svg")
-      .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
-      .attr("xmlns:sodipodi", "http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd")
-      .attr("xmlns:inkscape", "http://www.inkscape.org/namespaces/inkscape")
-      .attr("viewBox", " 0 0 " + (m.width) + " " + (m.height))
-      .node().outerHTML;
 
-    defs.append("style")
-     .attr("type", "text\/css")
-     .text(createStyles());
-    
-    var base64SVG = btoa(unescape(encodeURIComponent(svgStr)));
-    
-    d3.select("#d3-celestial-svg").remove();
-    
-    return "data:image/svg+xml;base64," + base64SVG;
-  });
+  if (error) throw error;
+  var svg = d3.select("#d3-celestial-svg svg")
+    .attr("title", "D3-Celestial")
+    .attr("version", 1.1)
+    .attr("encoding", "UTF-8")
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
+    .attr("xmlns:sodipodi", "http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd")
+    .attr("xmlns:inkscape", "http://www.inkscape.org/namespaces/inkscape")
+    .attr("viewBox", " 0 0 " + (m.width) + " " + (m.height));
+
+  defs.append("style")
+   .attr("type", "text\/css")
+   .text(createStyles());
+  /*defs.append(":sodipodi:namedview")
+   .attr(":inkscape:window-width", m.width+200)
+   .attr(":inkscape:window-height", m.height)
+   .attr(":inkscape:window-maximized", "1");*/
+
+    const svgContent = svg.node().outerHTML;
+
+    if (valid === 'yes') {
+      // Log as Base64 string
+      const base64 = btoa(svgContent);
+
+      // Construct data URI 
+      const dataURI = 'data:image/svg+xml;base64,' + base64;
+console.log(dataURI)
+      return dataURI;
+
+
+    } else if (exportCallback !== null) {
+
+
+    }
+
+
+ ;
 }
 
 var customSvgSymbols = d3.map({
