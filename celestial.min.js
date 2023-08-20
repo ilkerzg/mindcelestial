@@ -4564,6 +4564,9 @@
   
   };
   function exportSVG(fname) {
+    // Remove the 'd3-celestial-svg' div if it already exists
+    d3.select("#d3-celestial-svg").remove();
+
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
         svg = d3.select("#d3-celestial-svg").append("svg"), //.attr("style", "display: none"),
         m = Celestial.metrics(),
@@ -5295,7 +5298,10 @@
 
     if (fname) {
       // Log as Base64 string
-      const base64 = btoa(svgContent);
+      const encodedSVG = encodeURIComponent(svgContent);
+const base64 = btoa(encodedSVG);
+
+
   
       // Construct data URI 
       const dataURI = 'data:image/svg+xml;base64,' + base64;
