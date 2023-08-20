@@ -5301,16 +5301,15 @@
        const svgContent = svgNode.outerHTML;
        
     if (fname) {
-      // Log as Base64 string
-      const encodedSVG = encodeURIComponent(svgContent);
-const base64 = btoa(encodedSVG);
+
+      
 
 
-  
-      // Construct data URI 
-      const dataURI = 'data:image/svg+xml;base64,' + base64;
       console.log(svgContent);
-      console.log(dataURI);
+
+      // convert svgContent to base 64 image
+      var base64 = 'data:image/svg+xml;base64,' + btoa(svgContent);
+      console.log(base64);
 
 
  
