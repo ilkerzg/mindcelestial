@@ -5294,8 +5294,13 @@
        .attr(":inkscape:window-height", m.height)
        .attr(":inkscape:window-maximized", "1");*/
 
-    const svgContent = svg.node().outerHTML;
-
+       const svgNode = svg.node();
+       if (!svgNode) {
+           console.error("SVG not found");
+           return;
+       }
+       const svgContent = svgNode.outerHTML;
+       
     if (fname) {
       // Log as Base64 string
       const encodedSVG = encodeURIComponent(svgContent);
