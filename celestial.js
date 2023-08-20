@@ -4565,7 +4565,6 @@
   };
   function exportSVG(fname) {
     // Remove the 'd3-celestial-svg' div if it already exists
-    d3.select("#d3-celestial-svg svg").remove();
 
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
         svg = d3.select("#d3-celestial-svg").append("svg"), //.attr("style", "display: none"),
