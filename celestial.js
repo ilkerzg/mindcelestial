@@ -5309,7 +5309,7 @@
 
       // convert svgContent to base 64 image
     // convert svgContent to base 64 image
-var base64 = 'data:image/svg+xml;base64,' + btoa(encodeURIComponent(svgContent));
+var base64 = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgContent)));
 console.log(base64);
 
 
