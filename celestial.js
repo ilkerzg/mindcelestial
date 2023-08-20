@@ -5309,9 +5309,9 @@ const base64 = btoa(encodedSVG);
   
       // Construct data URI 
       const dataURI = 'data:image/svg+xml;base64,' + base64;
-console.log(dataURI);
-      const event = new CustomEvent('newSVG', {detail: svgContent});
-      window.dispatchEvent(event);
+      console.log(svgContent);
+      console.log(dataURI);
+
 
  
 
