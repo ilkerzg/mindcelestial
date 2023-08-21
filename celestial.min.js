@@ -5285,6 +5285,16 @@
         .attr("xmlns:inkscape", "http://www.inkscape.org/namespaces/inkscape")
         .attr("viewBox", " 0 0 " + (m.width) + " " + (m.height));
   
+        svg.append("defs")
+   .append("style")
+   .attr("type", "text/css")
+   .text(`
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        text {
+            font-family: 'Roboto', sans-serif;
+        }
+   `);
+   
       defs.append("style")
        .attr("type", "text\/css")
        .text(createStyles());
