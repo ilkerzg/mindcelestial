@@ -5302,13 +5302,9 @@
        
     if (fname) {
 
-     setTimeout(() => {
+    
+
       callback(svgContent);
-
-     }, 1000);
-
-
-
 
 
     } else if (exportCallback !== null) {
