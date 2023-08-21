@@ -4567,11 +4567,6 @@
     // Remove the 'd3-celestial-svg' div if it already exists
 // delete d3-celestial-svg id element if it already exists
    
-setTimeout(() => {
-  if (d3.select("#d3-celestial-svg")) {
-    d3.select("#d3-celestial-svg").remove();
-  }
-}, 1250);
 
 
 
