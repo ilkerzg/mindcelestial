@@ -4566,10 +4566,14 @@
   function exportSVG(fname,  callback) {
     // Remove the 'd3-celestial-svg' div if it already exists
 // delete d3-celestial-svg id element if it already exists
-    if (d3.select("#d3-celestial-svg")) {
-      d3.select("#d3-celestial-svg").remove();
-    }
-    
+   
+setTimeout(() => {
+  if (d3.select("#d3-celestial-svg")) {
+    d3.select("#d3-celestial-svg").remove();
+  }
+}, 1250);
+
+
 
 
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
