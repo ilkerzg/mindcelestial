@@ -5275,71 +5275,50 @@
   
     q.await(function(error) {
       if (error) throw error;
-      var svg = d3.select("#d3-celestial-svg svg")
-        .attr("title", "D3-Celestial")
-        .attr("version", 1.1)
-        .attr("encoding", "UTF-8")
-        .attr("xmlns", "http://www.w3.org/2000/svg")
-        .attr("xmlns:xlink", "http://www.w3.org/1999/xlink")
-        .attr("xmlns:sodipodi", "http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd")
-        .attr("xmlns:inkscape", "http://www.inkscape.org/namespaces/inkscape")
-        .attr("viewBox", " 0 0 " + (m.width) + " " + (m.height));
-  
-        if(fname.fontname === 'Poppins') {
-        svg.append("defs")
-   .append("style")
-   .attr("type", "text/css")
-   .text(`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-        text {
-            font-family: 'Poppins', sans-serif;
-            font-size: ${fname.fontsize}rem;
-        }
-   `);
-  }else{
-    svg.append("defs")
-   .append("style")
-   .attr("type", "text/css")
-   .text(`
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
-        text {
-          font-family: 'Dancing Script', cursive; 
-          font-size: ${fname.fontsize}rem;
-        }
-   `);
-  }
-   
-      defs.append("style")
-       .attr("type", "text\/css")
-       .text(createStyles());
-      /*defs.append(":sodipodi:namedview")
-       .attr(":inkscape:window-width", m.width+200)
-       .attr(":inkscape:window-height", m.height)
-       .attr(":inkscape:window-maximized", "1");*/
-
-       const svgNode = svg.node();
-       if (!svgNode) {
-           return;
-       }
-       const svgContent = svgNode.outerHTML;
-       
-    if (fname) {
-
- 
-          
-      
-
-      callback(svgContent);
-
-
-    } else if (exportCallback !== null) {
-      exportCallback(svgContent);
-    }
-
-    d3.select("#d3-celestial-svg").remove();
-    // remove #d3-celestial-svg with vanilla js
     
-});
+      const svg = d3.select("#d3-celestial-svg svg")
+        .attr("title", "D3-Celestial")
+        //... other attributes ...
+    
+      if (fname.fontname === 'Poppins') {
+        svg.append("defs")
+          .append("style")
+          .attr("type", "text/css")
+          .text(`
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+            text {
+                font-family: 'Poppins', sans-serif;
+                font-size: ${fname.fontsize}rem;
+            }
+          `);
+      } else {
+        svg.append("defs")
+          .append("style")
+          .attr("type", "text/css")
+          .text(`
+            @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+            text {
+              font-family: 'Dancing Script', cursive; 
+              font-size: ${fname.fontsize}rem;
+            }
+          `);
+      }
+    
+      const svgNode = svg.node();
+      if (!svgNode) return;
+    
+      const svgContent = svgNode.outerHTML;
+    
+      if (fname) {
+        callback(svgContent);
+      } else if (exportCallback !== null) {
+        exportCallback(svgContent);
+      }
+    
+      // If needed: remove d3-celestial-svg after getting svgContent
+      d3.select("#d3-celestial-svg").remove();
+    });
+    
   
   }
   
