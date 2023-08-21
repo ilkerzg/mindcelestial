@@ -5325,12 +5325,7 @@
        
     if (fname) {
 
-      d3.select("#d3-celestial-svg").remove();
-      // remove #d3-celestial-svg with vanilla js
-          var elem = document.getElementById('d3-celestial-svg');
-          elem.parentNode.removeChild(elem);
-          
-      
+    
 
       callback(svgContent);
 
@@ -5341,9 +5336,7 @@
 
     d3.select("#d3-celestial-svg").remove();
 // remove #d3-celestial-svg with vanilla js
-    var elem = document.getElementById('d3-celestial-svg');
-    elem.parentNode.removeChild(elem);
-
+    
 
 
 });
