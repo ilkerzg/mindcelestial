@@ -5319,7 +5319,6 @@
 
        const svgNode = svg.node();
        if (!svgNode) {
-           console.error("SVG not found");
            return;
        }
        const svgContent = svgNode.outerHTML;
