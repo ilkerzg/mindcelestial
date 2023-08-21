@@ -5338,9 +5338,7 @@
 
     d3.select("#d3-celestial-svg").remove();
     // remove #d3-celestial-svg with vanilla js
-        var elem = document.getElementById('d3-celestial-svg');
-        elem.parentNode.removeChild(elem);
-
+    
 });
   
   }
