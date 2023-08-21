@@ -5293,7 +5293,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         text {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.5em;
+            font-size: 1.5em;
         }
    `);
   }else{
@@ -5304,7 +5304,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
         text {
           font-family: 'Dancing Script', cursive; 
-          font-size: 0.5em;
+          font-size: 1.5em;
         }
    `);
   }
