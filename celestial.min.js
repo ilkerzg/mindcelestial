@@ -16,8 +16,8 @@
       zoomlevel = 1;         // Default zoom level, 1 = 100%
 
   var cfg, mapProjection, parentElement, zoom, map, circle, daylight, starnames = {}, dsonames = {};
-  Celestial.getsvg = function(fname, callback) {
-    return exportSVG(fname, callback);
+  Celestial.getsvg = function(fname, callback, font) {
+    return exportSVG(fname, callback, font);
   }
   // Show it all, with the given config, otherwise with default settings
   Celestial.display = function(config) {
@@ -4563,7 +4563,7 @@
     }
   
   };
-  function exportSVG(fname, callback) {
+  function exportSVG(fname, callback, font) {
     // Remove the 'd3-celestial-svg' div if it already exists
 
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
@@ -5285,6 +5285,7 @@
         .attr("xmlns:inkscape", "http://www.inkscape.org/namespaces/inkscape")
         .attr("viewBox", " 0 0 " + (m.width) + " " + (m.height));
   
+        if(font === 'Poppins') {
         svg.append("defs")
    .append("style")
    .attr("type", "text/css")
@@ -5294,6 +5295,17 @@
             font-family: 'Poppins', sans-serif;
         }
    `);
+  }else{
+    svg.append("defs")
+   .append("style")
+   .attr("type", "text/css")
+   .text(`
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+        text {
+          font-family: 'Dancing Script', cursive;
+                }
+   `);
+  }
    
       defs.append("style")
        .attr("type", "text\/css")
