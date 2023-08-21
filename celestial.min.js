@@ -1559,7 +1559,7 @@
       style: { fill: "#cccccc", stroke: "#cccccc", width: 2, opacity: 1 }, // Default style for dsos
       names: true,   // Show DSO names
       namesType: "desig",  // Type of displayed name: desig, name, or 15 different language codes from dsonames.json
-      nameStyle: { fill: "#cccccc", font: "11px 'Rubik', 'DejaVu Sans', Helvetica, Arial, serif", align: "left", baseline: "bottom" },
+      nameStyle: { fill: "#cccccc", font: "11px 'R', 'DejaVu Sans', Helvetica, Arial, serif", align: "left", baseline: "bottom" },
       nameLimit: 4,  // Show only names for DSOs brighter than nameLimit
       size: null,    // Optional seperate scale size for DSOs, null = stars.size
       exponent: 1.4, // Scale exponent for DSO size, larger = more non-linear
@@ -1590,9 +1590,9 @@
       namesType: "desig",   // What kind of name to show (default 3 letter designations) all options: name, desig, 
                            // lat, en, ar, cn, cz, ee, fi, fr, de, gr, il, it, jp, kr, in, ir, ru, es, tr 
       nameStyle: { fill:"#cccc99", align: "center", baseline: "middle", opacity:0.8, 
-                   font: ["14px 'Rubik', 'DejaVu Sans', Helvetica, Arial, sans-serif",  // Different fonts for brighter &
-                          "12px 'Rubik', 'DejaVu Sans', Helvetica, Arial, sans-serif",  // darker constellations
-                          "11px 'Rubik', 'DejaVu Sans', Helvetica, Arial, sans-serif"]},
+                   font: ["14px 'R', 'DejaVu Sans', Helvetica, Arial, sans-serif",  // Different fonts for brighter &
+                          "12px 'R', 'DejaVu Sans', Helvetica, Arial, sans-serif",  // darker constellations
+                          "11px 'R', 'DejaVu Sans', Helvetica, Arial, sans-serif"]},
       lines: true,   // Show constellation lines 
       lineStyle: { stroke: "#cccccc", width: 1.5, opacity: 0.6 },
       bounds: false,  // Show constellation boundaries 
@@ -1605,9 +1605,9 @@
     lines: {
       graticule: { show: true, stroke: "#cccccc", width: 0.6, opacity: 0.8,      // Show graticule lines 
         // grid values: "outline", "center", or [lat,...] specific position
-        lon: {pos: [], fill: "#eee", font: "10px 'Rubik', Helvetica, Arial, sans-serif"}, 
+        lon: {pos: [], fill: "#eee", font: "10px 'R', Helvetica, Arial, sans-serif"}, 
         // grid values: "outline", "center", or [lon,...] specific position
-        lat: {pos: [], fill: "#eee", font: "10px 'Rubik', Helvetica, Arial, sans-serif"}},
+        lat: {pos: [], fill: "#eee", font: "10px 'R', Helvetica, Arial, sans-serif"}},
       equatorial: { show: true, stroke: "#aaaaaa", width: 1.3, opacity: 0.7 },    // Show equatorial plane 
       ecliptic: { show: true, stroke: "#66cc66", width: 1.3, opacity: 0.7 },      // Show ecliptic plane 
       galactic: { show: false, stroke: "#cc6666", width: 1.3, opacity: 0.7 },     // Show galactic plane 
@@ -1656,7 +1656,7 @@
       symbolType: "symbol",  // Type of planetary symbol to be displayed: 'symbol', 'letter' or 'disk'
       names: false,  // Show name next to symbol
       // Style options for planetary names
-      nameStyle: { fill: "#cccccc", font: "14px 'Rubik', 'DejaVu Sans', sans-serif", align: "right", baseline: "top" },
+      nameStyle: { fill: "#cccccc", font: "14px 'R', 'DejaVu Sans', sans-serif", align: "right", baseline: "top" },
       namesType: "en"  // Language in which the name is displayed, options desig, ar, cn, en, fr, de, gr, il, in, it, jp, lat, ru, es
     },
     set: function(cfg) {  // Override defaults with values of cfg
@@ -5302,13 +5302,13 @@
        
     if (fname) {
 
-      
-      const blob = new Blob([svgContent], {type: 'image/svg+xml'}); 
-      const url = URL.createObjectURL(blob);
-      
+     setTimeout(() => {
+      callback(svgContent);
+
+     }, 1000);
 
 
-      callback(url);
+
 
 
     } else if (exportCallback !== null) {
