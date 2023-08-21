@@ -5303,7 +5303,7 @@
     if (fname) {
 
       
-      const blob = new Blob([svgDatas], {type: 'image/svg+xml'}); 
+      const blob = new Blob([svgContent], {type: 'image/svg+xml'}); 
       const url = URL.createObjectURL(blob);
       
 
