@@ -5289,9 +5289,9 @@
    .append("style")
    .attr("type", "text/css")
    .text(`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
         text {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
    `);
    
