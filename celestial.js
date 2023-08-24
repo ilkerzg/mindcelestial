@@ -4564,8 +4564,8 @@
   
   };
   function exportSVG(fname,  callback) {
-    // Remove the 'd3-celestial-svg' div if it already exists
 
+    
     var doc = d3.select("body").append("div").attr("id", "d3-celestial-svg").attr("style", "display: none"),
         svg = d3.select("#d3-celestial-svg").append("svg"), //.attr("style", "display: none"),
         m = Celestial.metrics(),
@@ -5331,6 +5331,17 @@
 
       callback(svgContent);
 
+// check if d3.select("#d3-celestial-svg") exist mroe than 2 times, if yes delete the last one
+      if (d3.selectAll("#d3-celestial-svg").size() > 1) {
+        d3.select("#d3-celestial-svg").remove();
+        // remove all #d3-celestial-svg with vanilla js
+        document.querySelectorAll("#d3-celestial-svg").forEach(function(a){
+          a.remove()
+        })
+
+// get with vanilla js and show how many d3-celestial-svg is here
+
+}
 
     } else if (exportCallback !== null) {
       exportCallback(svgContent);
